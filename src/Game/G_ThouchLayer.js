@@ -92,7 +92,7 @@ var G_ThouchLayer = cc.Layer.extend({
         this.schedule(this.showOtherid,1);
 
         //是否是第一次进来，是则弹出游戏指引
-        cc.log("是否是第一次进入游戏："+wx_info.first_time);
+        /*cc.log("是否是第一次进入游戏："+wx_info.first_time);
         if(wx_info.first_time=='yes'){
             var guideUI = new GuideUI("正在匹配玩家");
             this.addChild(guideUI,30);
@@ -102,10 +102,7 @@ var G_ThouchLayer = cc.Layer.extend({
              var waitUI = new WaitUI("正在匹配玩家");
              this.addChild(waitUI,30);
              }
-        }
-
-
-
+        }*/
 
         this.schedule(this.chooseBaker, 1 ,10, 1);    //定时函数，每1秒执行一次chooseBaker函数
 
@@ -141,7 +138,7 @@ var G_ThouchLayer = cc.Layer.extend({
             this.xt_beginCallback();
             this._Playerready_menu.setVisible(false);
         }else{
-            xhr.open("POST", base_url + "&m=send_player_ready");
+            xhr.open("POST", base_url + "&m=send_player_ready&ChannelID="+wx_info.ChannelID+"&ActiveID="+wx_info.ActiveID+"&RoomID="+wx_info.RoomID);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
@@ -225,7 +222,7 @@ var G_ThouchLayer = cc.Layer.extend({
         }
 
         var xhr = cc.loader.getXMLHttpRequest();
-        xhr.open("POST", "index.php?c=poker&m=set_music");
+        xhr.open("POST", "index.php?c=poker&m=set_music&ChannelID="+wx_info.ChannelID+"&ActiveID="+wx_info.ActiveID+"&RoomID="+wx_info.RoomID);
         //set Content-type "text/plain;charset=UTF-8" to post plain text
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         xhr.onreadystatechange = function () {
@@ -328,7 +325,7 @@ var G_ThouchLayer = cc.Layer.extend({
         var effect_ya = cc.audioEngine.playEffect(res.s_ya,false);
         cc.log(this.bet_on_obj.total);
         if(this.checkYD(this.bet_on_obj.total+sender.bet_num)){
-            xhr.open("POST", base_url + "&m=compare");
+            xhr.open("POST", base_url + "&m=compare&ChannelID="+wx_info.ChannelID+"&ActiveID="+wx_info.ActiveID+"&RoomID="+wx_info.RoomID);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
@@ -428,7 +425,7 @@ var G_ThouchLayer = cc.Layer.extend({
         var effect_send = cc.audioEngine.playEffect(res.s_send,false);
         var self=this;
         //异步
-        xhr.open("POST", "index.php?c=poker&m=main");
+        xhr.open("POST", "index.php?c=poker&m=main&ChannelID="+wx_info.ChannelID+"&ActiveID="+wx_info.ActiveID+"&RoomID="+wx_info.RoomID);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
@@ -822,7 +819,7 @@ var G_ThouchLayer = cc.Layer.extend({
         var effect_send = cc.audioEngine.playEffect(res.s_send,false);
         var self=this;
         //异步
-        xhr.open("POST", "index.php?c=poker&m=main");
+        xhr.open("POST", "index.php?c=poker&m=main&ChannelID="+wx_info.ChannelID+"&ActiveID="+wx_info.ActiveID+"&RoomID="+wx_info.RoomID);
         //set Content-type "text/plain;charset=UTF-8" to post plain text
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         xhr.onreadystatechange = function () {

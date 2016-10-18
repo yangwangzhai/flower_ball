@@ -24,7 +24,7 @@
 <body style="padding:0; margin: 0; background: #000;">
 <script>
     var font_type = "楷体";
-    var wx_info = {openid:'<?=$wx_info["Openid"]?>',nickname:'<?=$wx_info["NickName"]?>',imgUrl:'<?=$wx_info["HeadImg"]?>',total_gold:<?=$wx_info["TotalGold"]?>,gamekey:'<?=$wx_info["gamekey"]?>',MusicSet:<?=$wx_info["MusicSet"]?>,EffectsSet:<?=$wx_info["EffectsSet"]?>,first_time:'<?=$wx_info["first_time"]?>'};
+    var wx_info = {openid:'<?=$wx_info["Openid"]?>',nickname:'<?=$wx_info["NickName"]?>',imgUrl:'<?=$wx_info["HeadImg"]?>',total_gold:<?=$wx_info["TotalGold"]?>,gamekey:'<?=$wx_info["gamekey"]?>',MusicSet:<?=$wx_info["MusicSet"]?>,EffectsSet:<?=$wx_info["EffectsSet"]?>,first_time:'<?=$wx_info["first_time"]?>',ChannelID:<?=$wx_info["ChannelID"]?>,ActiveID:<?=$wx_info["ActiveID"]?>,RoomID:<?=$wx_info["RoomID"]?>};
 
     var base_url = './index.php?c=poker<?=$this->game_sign?>';
 

@@ -34,7 +34,7 @@ var G_BackGroundLayer = cc.Layer.extend({
         });
 
         //把自己的信息传到nodejs
-        socket.emit('login', {openid:wx_info.openid, headimgurl:wx_info.imgUrl, total_gold:wx_info.total_gold, nickname:wx_info.nickname });
+        socket.emit('login', {openid:wx_info.openid, headimgurl:wx_info.imgUrl, total_gold:wx_info.total_gold, nickname:wx_info.nickname ,ActiveID:wx_info.ActiveID});
         socket.on('enter', function(obj) {
             //cc.log(obj);
             room_id = obj.room_id;
