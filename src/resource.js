@@ -1,4 +1,4 @@
-var res = {
+/*var res = {
     S_bg : "res/bg_desktop.png",
     S_lg : "res/bg_loading.png",
     s_bet5:"res/btn_5.png",
@@ -33,7 +33,9 @@ var res = {
     s_send : "res/audio/send.mp3",
     s_player_win : "res/audio/player_win.mp3",
     s_baker_win : "res/audio/baker_win.wav"
-};
+};*/
+
+var res = res_arr;
 
 var g_resources = [];
 for (var i in res) {

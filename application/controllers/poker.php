@@ -29,8 +29,8 @@ class poker extends CI_Controller
         }
         $this->game_sign = "&AID=$this->ActiveID&CID=$this->ChannelID&RID=$this->RoomID";
         $this->game_sign_sql = addslashes("  ActiveID=$this->ActiveID AND ChannelID=$this->ChannelID AND RoomID=$this->RoomID");
-        //$this->load->model('my_common_model', 'common');
-        //$this->load->model('lb_model');
+        $this->load->model('my_common_model', 'common');
+        $this->load->model('lb_model');
 
     }
 
@@ -99,6 +99,8 @@ class poker extends CI_Controller
         $data['wx_info']['ChannelID'] = $this->ChannelID;
         $data['wx_info']['ActiveID'] = $this->ActiveID;
         $data['wx_info']['RoomID'] = $this->RoomID;
+
+        $data['wx_info']['GameUI'] =  $this->common->get_game_ui($this->ActiveID, 'flower_ball');
 
 		$this->load->view('poker',$data);
 	}

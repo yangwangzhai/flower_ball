@@ -1,7 +1,7 @@
 {
     "project_type": "javascript",
 
-    "debugMode" : 1,
+    "debugMode" : 0,
     "noCache": true,
     "showFPS" : 0,
     "frameRate" : 60,
