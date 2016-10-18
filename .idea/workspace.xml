@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5970527-82e2-4569-b8cf-65bef4cdc589" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/lose.png" afterPath="$PROJECT_DIR$/res/lose.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/win.png" afterPath="$PROJECT_DIR$/res/win.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/G_BackGroundLayer.js" afterPath="$PROJECT_DIR$/src/Game/G_BackGroundLayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Game/G_ThouchLayer.js" afterPath="$PROJECT_DIR$/src/Game/G_ThouchLayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/poker.php" afterPath="$PROJECT_DIR$/application/controllers/poker.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/poker.php" afterPath="$PROJECT_DIR$/application/views/poker.php" />
-    </list>
+    <list default="true" id="d5970527-82e2-4569-b8cf-65bef4cdc589" name="Default" comment="" />
     <ignored path="flower_ball.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -35,8 +28,8 @@
       <file leaf-file-name="poker.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/poker.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.0057473" vertical-offset="69" max-vertical-offset="14444">
-              <caret line="215" column="63" selection-start-line="215" selection-start-column="63" selection-end-line="215" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.26436782" vertical-offset="69" max-vertical-offset="14444">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <marker date="1476781822021" expanded="true" signature="5536:8877" placeholder="..." />
                 <marker date="1476781822021" expanded="true" signature="5956:8877" placeholder="..." />
@@ -150,20 +143,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="flower_ball" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flower_ball" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flower_ball" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,8 +292,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/poker.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.0057473" vertical-offset="69" max-vertical-offset="14444">
-          <caret line="215" column="63" selection-start-line="215" selection-start-column="63" selection-end-line="215" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.26436782" vertical-offset="69" max-vertical-offset="14444">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <marker date="1476781822021" expanded="true" signature="5536:8877" placeholder="..." />
             <marker date="1476781822021" expanded="true" signature="5956:8877" placeholder="..." />
