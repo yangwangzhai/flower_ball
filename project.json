@@ -1,7 +1,7 @@
 {
     "project_type": "javascript",
 
-    "debugMode" : 0,
+    "debugMode" : 1,
     "noCache": true,
     "showFPS" : 0,
     "frameRate" : 60,
@@ -9,7 +9,7 @@
     "renderMode" : 1,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d"],
+    "modules" : ["cocos2d","external","extensions"],
 
     "jsList" : [
         "src/resource.js",

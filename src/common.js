@@ -51,7 +51,7 @@ function createClipRoundText (txt,fontsize,color,width,height,target){
 function setXlbText(target){
     //喇叭公告
     var self = this;
-    xhr.open("GET", "index.php?c=poker&m=get_xlb&ids="+xlb_ids, true);
+    xhr.open("GET", base_url + "&m=get_xlb&ids="+xlb_ids, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
             var httpStatus = xhr.statusText;

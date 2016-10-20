@@ -54,7 +54,7 @@ cc.LoaderScene = cc.Scene.extend({
         // bgLayer.setScale(0.65);
         // bgLayer.setRotation(90);
         //bgLayer.setScale(0.5);
-        bgLayer.setRotation(90);
+        //bgLayer.setRotation(90);
         self.addChild(bgLayer, 0);
 
 
@@ -74,11 +74,29 @@ cc.LoaderScene = cc.Scene.extend({
          fontSize = 14;
          lblHeight = -logoHeight / 2 - 10;
          }*/
+
+        this.LoadingBarBackgrounp  = new cc.Sprite(res.s_jin_du1);
+        this.LoadingBarBackgrounp.setPosition(cc.pAdd(cc.visibleRect.center, cc.p(-16, cc.visibleRect.center.y-575)));
+        this.LoadingBarBackgrounp.setRotation(90);
+        this.addChild(this.LoadingBarBackgrounp,11);
+        //进度条：
+        this.loadingBar = new ccui.LoadingBar();
+        this.loadingBar.setName("LoadingBar");
+        this.loadingBar.loadTexture(res.s_jin_du);
+        this.loadingBar.setRotation(90);
+        this.loadingBar.setDirection(ccui.LoadingBar.TYPE_LEFT);
+        //  this.loadingBar.scale = 1.1;
+        this.loadingBar.setPercent(0);
+        this.loadingBar.setPosition(cc.pAdd(cc.visibleRect.center, cc.p(-18, cc.visibleRect.center.y-575)));//-18  -153
+        this.addChild(this.loadingBar,20);
+
+
         //loading percent
         var label = self._label = new cc.LabelTTF("正在加载游戏资源...... 0%", "Arial", fontSize);
         label.setPosition(size.width/2 , size.height/2 );
         label.setColor(cc.color(255, 255, 255));
-        bgLayer.addChild(this._label, 10);
+        label.setRotation(90);
+        //bgLayer.addChild(this._label, 10);
         return true;
     },
 
@@ -127,12 +145,15 @@ cc.LoaderScene = cc.Scene.extend({
     _startLoading: function () {
         var self = this;
         self.unschedule(self._startLoading);
+        //self.schedule(self._startLoading,1);
         var res = self.resources;
         cc.loader.load(res,
             function (result, count, loadedCount) {
                 var percent = (loadedCount / count * 100) | 0;
                 percent = Math.min(percent, 100);
                 self._label.setString("Loading... " + percent + "%");
+                //更改进度条的进度：
+                self.loadingBar.setPercent(percent);
             }, function () {
                 if (self.cb)
                     self.cb.call(self.target);

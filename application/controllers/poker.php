@@ -29,8 +29,8 @@ class poker extends CI_Controller
         }
         $this->game_sign = "&AID=$this->ActiveID&CID=$this->ChannelID&RID=$this->RoomID";
         $this->game_sign_sql = addslashes("  ActiveID=$this->ActiveID AND ChannelID=$this->ChannelID AND RoomID=$this->RoomID");
-        $this->load->model('my_common_model', 'common');
-        $this->load->model('lb_model');
+        //$this->load->model('my_common_model', 'common');
+        //$this->load->model('lb_model');
 
     }
 
@@ -87,7 +87,7 @@ class poker extends CI_Controller
             $this->addUser($Udata);
             $data['wx_info']['first_time'] = "yes";
         }
-        $gamekey = $this->getKey();
+        $data['wx_info']['gamekey'] = $gamekey = $this->getKey();
         //存验证码
 		$this->saveGameKey($data['wx_info']['Openid'],$gamekey);
         //获取背景音乐、音效设置
@@ -100,7 +100,7 @@ class poker extends CI_Controller
         $data['wx_info']['ActiveID'] = $this->ActiveID;
         $data['wx_info']['RoomID'] = $this->RoomID;
 
-        $data['wx_info']['GameUI'] =  $this->common->get_game_ui($this->ActiveID, 'flower_ball');
+        //$data['wx_info']['GameUI'] =  $this->common->get_game_ui($this->ActiveID, 'flower_ball');
 
 		$this->load->view('poker',$data);
 	}
@@ -192,6 +192,30 @@ class poker extends CI_Controller
                         $rent = 20;
                     }
                     $win_sum = $sum-$rent;
+
+                    //下注信息写入数据库
+                    $BetOndata['Openid'] = $openid;
+                    $BetOndata['PlayerOpenid'] = $other_openid;
+                    $BetOndata['bet'] = $sum;
+                    $BetOndata['p_poker_face'] = $p_1."_".$p_2;
+                    $BetOndata['b_poker_face'] = $b_1."_".$b_2;
+                    $BetOndata['ChannelID'] = $this->ChannelID;
+                    $BetOndata['ActiveID'] = $this->ActiveID;
+                    $BetOndata['RoomID'] = $this->RoomID;
+                    if($sum<=0){
+                        $BetOndata['Status'] = 0;//结算成功为1，失败为0
+                    }else{
+                        $BetOndata['Status'] = 1;//结算成功为1，失败为0
+                    }
+                    if($winner=="baker"){
+                        $BetOndata['Result'] = -$sum;
+                    }else{
+                        $BetOndata['Result'] = $sum;
+                    }
+                    $BetOndata['AddTime'] = time();
+                    $this->db->insert('zy_fb_bet_on',$BetOndata);
+                    $gameid = $this->db->insert_id();
+
                     if($game_type){
                         if($winner=="baker"){
                             $Other_YD = $this->xt_addYD($other_openid,abs($win_sum)); //系统庄家赢，增加龙币
@@ -210,28 +234,7 @@ class poker extends CI_Controller
                         }
                     }
 
-                    //下注信息写入数据库
-                    $BetOndata['Openid'] = $openid;
-                    $BetOndata['PlayerOpenid'] = $other_openid;
-                    $BetOndata['bet'] = $sum;
-                    $BetOndata['p_poker_face'] = $p_1."_".$p_2;
-                    $BetOndata['b_poker_face'] = $b_1."_".$b_2;
-                    $BetOndata['ChannelID'] = $this->ChannelID;
-                    $BetOndata['ActiveID'] = $this->ActiveID;
-                    $BetOndata['RoomID'] = $this->RoomID;
-                    if($sum<=0){
-                        $BetOndata['Status'] = 0;//结算成功为1，失败为0
-                    }else{
-                        $BetOndata['Status'] = 1;//结算成功为1，失败为0
-                    }
 
-                    if($winner=="baker"){
-                        $BetOndata['Result'] = -$sum;
-                    }else{
-                        $BetOndata['Result'] = $sum;
-                    }
-                    $BetOndata['AddTime'] = time();
-                    $this->db->insert('zy_fb_bet_on',$BetOndata);
                     $key = md5($openid . $sum . $this->nodekey);
                     $result = array('Code'=>0,'Msg'=>'成功','p_1'=>$p_1,'p_2'=>$p_2,'b_1'=>$b_1,'b_2'=>$b_2,'winner'=>$winner,'bets'=>$sum,'My_YD'=>$My_YD,'Other_YD'=>$Other_YD,'key'=>$key);
             }

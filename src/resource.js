@@ -1,4 +1,4 @@
-/*var res = {
+var res = {
     S_bg : "res/bg_desktop.png",
     S_lg : "res/bg_loading.png",
     s_bet5:"res/btn_5.png",
@@ -27,15 +27,17 @@
     s_guide3:"res/guide3.png",
     s_guide_next:"res/guide_next.png",
     s_guide_start:"res/guide_start.png",
+    s_jin_du:"res/jin_du.png",
+    s_jin_du1:"res/jin_du1.png",
 
     s_bg_music : "res/audio/bg_music.mp3",
     s_ya : "res/audio/s6.mp3",
     s_send : "res/audio/send.mp3",
     s_player_win : "res/audio/player_win.mp3",
     s_baker_win : "res/audio/baker_win.wav"
-};*/
+};
 
-var res = res_arr;
+//var res = res_arr;
 
 var g_resources = [];
 for (var i in res) {

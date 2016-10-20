@@ -17,16 +17,43 @@
             -webkit-user-select: none;
             -ms-user-select: none;
             -khtml-user-select: none;
-            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
+        }
+        body{ background:url('res/bg_loading.png') no-repeat center center;
+            background-attachment:fixed;
+            /* background-repeat:no-repeat;*/
+            background-size:cover;
+            -moz-background-size:cover;
+            -webkit-background-size:cover;
+
+        }
+        .bodycss{ background:url('res/bg_loading.png') no-repeat center center;
+            background-attachment:fixed;
+            /* background-repeat:no-repeat;*/
+            background-size:cover;
+            -moz-background-size:cover;
+            -webkit-background-size:cover;
+
+        }
+        .rotate{
+            /* http://www.outofmemory.cn */
+            /* Safari */
+            -webkit-transform: rotate(90deg);
+            /* Firefox */
+            -moz-transform: rotate(90deg);
+            /* Internet Explorer */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
         }
     </style>
 </head>
-<body style="padding:0; margin: 0; background: #000;">
+<body style="padding:0; margin: 0;">
 <script>
     var font_type = "楷体";
     var wx_info = {openid:'<?=$wx_info["Openid"]?>',nickname:'<?=$wx_info["NickName"]?>',imgUrl:'<?=$wx_info["HeadImg"]?>',total_gold:<?=$wx_info["TotalGold"]?>,gamekey:'<?=$wx_info["gamekey"]?>',MusicSet:<?=$wx_info["MusicSet"]?>,EffectsSet:<?=$wx_info["EffectsSet"]?>,first_time:'<?=$wx_info["first_time"]?>',ChannelID:<?=$wx_info["ChannelID"]?>,ActiveID:<?=$wx_info["ActiveID"]?>,RoomID:<?=$wx_info["RoomID"]?>};
-    var res_arr = new Array();
-    res_arr = <?=$wx_info["GameUI"]?>;
+    /*var res_arr = new Array();
+    res_arr = <?=$wx_info["GameUI"]?>;*/
     var base_url = './index.php?c=poker<?=$this->game_sign?>';
 
     (function () {
@@ -51,9 +78,9 @@
 <script src="res/loading.js"></script>
 <canvas id="gameCanvas" width="320" height="480"></canvas>
 <script src="http://192.168.1.217:3008/socket.io/socket.io.js"></script>
-<!--<script src="frameworks/cocos2d-html5/CCBoot.js"></script>
-<script cocos src="main.js"></script>-->
-<script src="publish/html5/game.min.js"></script>
+<script src="frameworks/cocos2d-html5/CCBoot.js"></script>
+<script cocos src="main.js"></script>
+<!--<script src="publish/html5/game.min.js"></script>-->
 <script type="text/javascript">
     var playerType = '';//player1是闲家
     var room_id = 0;

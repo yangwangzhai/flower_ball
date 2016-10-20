@@ -49,6 +49,7 @@
 
 var AllowMusic = false;
 cc.game.onStart = function(){
+    //cc.loader.resPath = "static/gameroom/flower_ball/";
     if(!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
         document.body.removeChild(document.getElementById("cocosLoading"));
     var xhr = cc.loader.getXMLHttpRequest();
