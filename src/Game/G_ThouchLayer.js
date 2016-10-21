@@ -67,7 +67,7 @@ var G_ThouchLayer = cc.Layer.extend({
 
         this.initBgMusic(); //播放背景音乐
 
-        this.initHelpBtn();//设置帮助按钮位置
+        this.initHelpBtn();//设置"帮助"按钮位置
 
         this.initBetOnObj();//初始化押注值：0
 
@@ -260,7 +260,8 @@ var G_ThouchLayer = cc.Layer.extend({
     },
 
     HelpCallback:function(){
-
+        var helpUI = new HelpUI();
+        this.addChild(helpUI,999);
     },
 
     //初始化押注值：0
@@ -365,7 +366,7 @@ var G_ThouchLayer = cc.Layer.extend({
         this.show_xz = new cc.LabelTTF('0', 'Arial', 20);
         this.show_xz.attr({
             x: 58,
-            y: 595,
+            y: 590,
             anchorX: 0.5,
             anchorY: 0.5
         });
@@ -380,7 +381,7 @@ var G_ThouchLayer = cc.Layer.extend({
         this.s_cancel_betArea = new cc.MenuItemImage(res.s_cancel_bet,res.s_cancel_bet,this.cancelCallback,this);
         this.s_cancel_betArea.attr({
             x:50,
-            y:310+this.s_cancel_betArea.height
+            y:300+this.s_cancel_betArea.height
         });
         this.s_cancel_betArea.setRotation(90);
         this._cancel_bet_menu = new cc.Menu(this.s_cancel_betArea);
@@ -850,7 +851,7 @@ var G_ThouchLayer = cc.Layer.extend({
                 if (xhr.status >= 200 && xhr.status <= 207) {
                     var response = eval("("+xhr.responseText+")");//接收服务器返回结果
                     self.player_num =response ; //玩家、庄家的牌数赋值给全景变量
-                    cc.log("返回的数据："+self.player_num);
+                    //cc.log("返回的数据："+self.player_num);
                     if(response.Code == 0){
                         //给闲家发背面牌
                         self.resultAreaHide();
@@ -862,22 +863,12 @@ var G_ThouchLayer = cc.Layer.extend({
                         self.poker_value.setRotation(92);
                         self.addChild( self.poker_value );
                         var action1 = cc.moveTo(0.5,cc.p(185, self.WinSize.height/2));
-                        var callback = cc.callFunc(self.xt_showCallBack,self);
+                        var delay = cc.delayTime(0.3);
+                        var callback = cc.callFunc(self.xt_baker_fun,self);
                         var sequence = cc.sequence(action1,callback);
                         self.poker_value.runAction(sequence);
                         self.s_show_downArea.setVisible(true);
-                        //给庄家发背面牌
-                        self.poker_value2  = new cc.Sprite(res.s_bg_poker);
-                        self.poker_value2.attr({
-                            x:self.WinSize.width/2-120,
-                            y:165
-                        });
-                        self.poker_value2.setScale(0.6,0.6);//设置精灵的缩放比例
-                        self.poker_value2.setRotation(90);
-                        self.addChild( self.poker_value2 );
-                        var action2 = cc.moveTo(0.5,cc.p(400, self.WinSize.height/2));
-                        var sequence2 = cc.sequence(action2);
-                        self.poker_value2.runAction(sequence2);
+
                         //玩家翻牌
                         self.scheduleOnce(function(){
                             var p1 = self.player_num.p_1;
@@ -888,18 +879,7 @@ var G_ThouchLayer = cc.Layer.extend({
                                 y : self.poker_value.height/2
                             });
                             self.poker_value.addChild(player_poker);
-                            //self.resultAreaShow();//显示“翻牌”按钮
-
-                            //自动翻牌
-                            var b1 = self.player_num.b_1;
-                            var b2 = self.player_num.b_2;
-                            var baker_poker = new cc.Sprite('#'+b1+'_'+b2+'.png');
-                            baker_poker.attr({
-                                x :  self.poker_value2.width/2,
-                                y :  self.poker_value2.height/2
-                            });
-                            self.poker_value2.addChild(baker_poker);
-
+                            self.xt_resultAreaShow();//显示人机对战的“翻牌”按钮
                         },0.5);
 
                     }else{
@@ -914,7 +894,45 @@ var G_ThouchLayer = cc.Layer.extend({
         xhr.send(params);//发送下注信息到服务器
     },
 
+    xt_baker_fun:function(){
+        //给庄家发背面牌
+        this.poker_value2  = new cc.Sprite(res.s_bg_poker);
+        this.poker_value2.attr({
+            x:this.WinSize.width/2-120,
+            y:165
+        });
+        this.poker_value2.setScale(0.6,0.6);//设置精灵的缩放比例
+        this.poker_value2.setRotation(90);
+        this.addChild( this.poker_value2 );
+        var action2 = cc.moveTo(0.5,cc.p(400, this.WinSize.height/2));
+        var sequence2 = cc.sequence(action2);
+        this.poker_value2.runAction(sequence2);
+    },
+
+    //人机对战“翻牌”按钮（只有人机对战情况下使用）
+    xt_resultAreaShow:function(){
+        this.xt_show_downArea = new cc.MenuItemImage(res.s_btn_show,res.s_btn_show,this.xt_showCallBack,this);
+        this.xt_show_downArea.attr({
+            x:145,
+            y:210
+        });
+        this.xt_show_downArea.setRotation(90);
+        this._xt_show_down_menu = new cc.Menu(this.xt_show_downArea);
+        this._xt_show_down_menu.x=0;
+        this._xt_show_down_menu.y=0;
+        this.addChild(this._xt_show_down_menu);
+    },
+
     xt_showCallBack:function(){
+        //翻庄家的牌
+        var b1 = this.player_num.b_1;
+        var b2 = this.player_num.b_2;
+        this.baker_poker = new cc.Sprite('#'+b1+'_'+b2+'.png');
+        this.baker_poker.attr({
+            x :  this.poker_value2.width/2,
+            y :  this.poker_value2.height/2
+        });
+        this.poker_value2.addChild(this.baker_poker);
         //判断谁赢
         if(this.player_num.winner=='baker'){
             var effect_baker_win = cc.audioEngine.playEffect(res.s_baker_win,false);
@@ -923,7 +941,7 @@ var G_ThouchLayer = cc.Layer.extend({
             var effect_player_win = cc.audioEngine.playEffect(res.s_player_win,false);
             this.xt_playerWin();
         }
-        this.s_show_downArea.setVisible(false);
+        this._xt_show_down_menu.setVisible(false);
     },
 
     xt_bankerWin:function(){
@@ -936,12 +954,11 @@ var G_ThouchLayer = cc.Layer.extend({
         this.playerChipsTemp.setOpacity(0);
         this.playerChipsTemp.setRotation(90);
         this.addChild( this.playerChipsTemp );
-        var delay = cc.delayTime(1);
         var callback1 = cc.callFunc(this.xt_bakerFadeOut,this);
-        var action1 = cc.fadeIn(0.2);
-        //var action1 = cc.scaleTo(1,0.5);
-        var callback2 = cc.callFunc(this.xt_bakerFadeOut2,this);
+        var action1 = cc.fadeIn(0.5);
+        var delay = cc.delayTime(1);
         var action2 = cc.fadeOut(0.2);
+        var callback2 = cc.callFunc(this.xt_bakerFadeOut2,this);
         var sequence = cc.sequence(callback1,action1,delay,action2,callback2);
         this.playerChipsTemp.runAction(sequence);
     },
@@ -968,10 +985,10 @@ var G_ThouchLayer = cc.Layer.extend({
         this.playerChips.setOpacity(0);
         this.playerChips.setRotation(90);
         this.addChild( this.playerChips );
-        var delay = cc.delayTime(1);
-        var action1 = cc.fadeIn(0.2);
         //var action1 = cc.scaleTo(1,0.5);
         var callback1 = cc.callFunc(this.xt_playerAdd,this);   //龙币加
+        var action1 = cc.fadeIn(0.5);
+        var delay = cc.delayTime(1);
         var action2 = cc.fadeOut(0.2);
         var callback2 = cc.callFunc(this.xt_playerFadeOut,this);
         var sequence = cc.sequence(callback1,action1,delay,action2,callback2);

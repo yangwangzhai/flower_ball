@@ -6,8 +6,8 @@
  * @param txt
  * @param fontsize
  * @param {cc.Color|null} color
- * @param width
- * @param height
+ * @param width 文字显示的宽带
+ * @param height 文字显示的高度
  * @returns {cc.Node|*}
  */
 var xhr = cc.loader.getXMLHttpRequest();
@@ -20,8 +20,8 @@ function createClipRoundText (txt,fontsize,color,width,height,target){
     text.anchorX = 0;
     if(text.width<=width){
         text.anchorY = 0;
-        text.y = 610;
-        text.x = 1;
+        text.y = 600;
+        text.x = 3;
         text.setRotation(90);
         target.addChild(text, 15, 123);
         return text;
@@ -41,8 +41,8 @@ function createClipRoundText (txt,fontsize,color,width,height,target){
             text.x = width+fontsize;
         }))));
 
-    cliper.y = 610;
-    cliper.x = 1;
+    cliper.y = 600;
+    cliper.x = 3;
     cliper.setRotation(90);
     target.addChild(cliper, 15, 123);
 

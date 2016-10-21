@@ -111,7 +111,7 @@ var G_BackGroundLayer = cc.Layer.extend({
                 anchorX : 0.5,
                 anchorY : 0.5
             });
-            self._Avatar.setPosition(this._Avatar.width/2+11,this.WinSize.height-this._Avatar.height/2-3);  //设置微信头像的位置
+            self._Avatar.setPosition(this._Avatar.width/2+14,this.WinSize.height-this._Avatar.height/2-5);  //设置微信头像的位置
             self._Avatar.setRotation(90);
             self.addChild(self._Avatar);
 
@@ -123,7 +123,7 @@ var G_BackGroundLayer = cc.Layer.extend({
             anchorX : 0,
             anchorY : 0.5
         });
-        this._NickName_label.setPosition(75,850);
+        this._NickName_label.setPosition(75,848);
         this._NickName_label.setRotation(90);
         this.addChild(this._NickName_label);
 
@@ -133,7 +133,7 @@ var G_BackGroundLayer = cc.Layer.extend({
             anchorX : 0,
             anchorY : 0.5
         });
-        this._mybean.setPosition(21,805);
+        this._mybean.setPosition(21,800);
         this._mybean.setRotation(90);
         this.addChild(this._mybean);
 
@@ -156,8 +156,8 @@ var G_BackGroundLayer = cc.Layer.extend({
         cc.loader.loadImg(obj.imgUrl, {isCrossOrigin : false }, function(err, img)
         {
             self.headsprite = new cc.Sprite(img);
-            self.headsprite.x = this.WinSize.width-self.headsprite.width/2;
-            self.headsprite.y = this.WinSize.height-250;
+            self.headsprite.x = this.WinSize.width-42;
+            self.headsprite.y = this.WinSize.height-240;
             self.headsprite.setAnchorPoint(0.5, 0.5);
             self.headsprite.setRotation(90);
             self.addChild(self.headsprite, 21);
@@ -167,7 +167,7 @@ var G_BackGroundLayer = cc.Layer.extend({
         //昵称
         this.nickname2 = new cc.LabelTTF('昵称：'+obj.nickname, font_type, 22, cc.size(140,22));
         this.nickname2.x = this.WinSize.width-120;
-        this.nickname2.y = this.WinSize.height-190;
+        this.nickname2.y = this.WinSize.height-200;
         this.nickname2.setAnchorPoint(0,0.5);
         this.nickname2.setColor(cc.color(0, 250, 154));
         this.nickname2.setRotation(90);
@@ -175,7 +175,7 @@ var G_BackGroundLayer = cc.Layer.extend({
 
         //龙币数
         this.scoreLabel2 = new cc.LabelTTF(obj.total_gold.toString(), "Arial", my_info_font_size);
-        this.scoreLabel2.x = this.WinSize.width-45;
+        this.scoreLabel2.x = this.WinSize.width-41;
         this.scoreLabel2.y = this.WinSize.height-20;
         this.scoreLabel2.value = obj.total_gold,
         this.scoreLabel2.setAnchorPoint(0,1);
@@ -189,8 +189,8 @@ var G_BackGroundLayer = cc.Layer.extend({
         cc.loader.loadImg(obj.headimgurl, {isCrossOrigin : false }, function(err, img) {
             self.removeChild(self.headsprite);
             self.headsprite = new cc.Sprite(img);
-            self.headsprite.x = this.WinSize.width-self.headsprite.width/2;
-            self.headsprite.y = this.WinSize.height-250;
+            self.headsprite.x = this.WinSize.width-42;
+            self.headsprite.y = this.WinSize.height-240;
             self.headsprite.setAnchorPoint(0.5, 0.5);
             self.headsprite.setRotation(90);
             self.addChild(self.headsprite, 21);

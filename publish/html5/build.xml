@@ -335,6 +335,7 @@
                 <file name="src/TipScene.js"/>
                 <file name="src/WaitScene.js"/>
                 <file name="src/GuideScene.js"/>
+                <file name="src/HelpScene.js"/>
                 <file name="main.js"/>
 
             </sources>
